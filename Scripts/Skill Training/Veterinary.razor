@@ -1,0 +1,35 @@
+# Train Veterinary to your max skill By Jaseowns
+# UO Outlands
+# I was training fencing, tactics and arms lore so me attacking my pet worked great.
+# The other option is to have other pets attack your pet.
+
+@setvar! yourMaxVetSkillToTrainTo 105
+overhead "Select your pet to attack and heal" 88
+@setvar! jasePetOne
+wait 650
+say "all kill"
+wft 500
+target jasePetOne
+
+while not dead 
+    if not bandaging
+        if findtype "clean bandage%s%" backpack as item
+            if not targetexists
+                dclick item
+                wft 500
+            endif
+            target jasePetOne
+            wait 650
+         else
+            overhead "Out of aids!" 34
+            wait 2000
+            break
+        endif
+    endif
+    wait 650
+    if skill "Veterinary" >= yourMaxVetSkillToTrainTo
+        break
+    endif
+endwhile
+
+say "all stop"

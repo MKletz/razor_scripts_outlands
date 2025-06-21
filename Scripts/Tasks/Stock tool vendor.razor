@@ -1,0 +1,159 @@
+// How to use
+// The script will sort tools into chests. One chest per tool type and will sort by material color.
+// Note this does not differentiate between exceptional and regular
+// Set prices based on material type in "Tool Prices". Price is determined by material type not tool type.
+// Location within chest can be modified under "Material location in container" currently evenly spaces in two rows of 5
+
+// How to add new tools
+// Add a container variable under "Set Containers"
+// Add container selection based on label under "Set container based on tool type"
+// Update the "while findtype" statement with the ID of the tool. ID required, name does not work.
+
+
+overhead 'Loading prices, please wait...' 2263
+
+//=========================================
+//Tool Prices
+setvar! IronPrice '200'
+setvar! DullCopperPrice '275'
+setvar! ShadowIronPrice '350'
+setvar! CopperPrice '400'
+setvar! BronzePrice '450'
+setvar! GoldPrice '950'
+setvar! AgapitePrice '1190'
+setvar! VeritePrice '2490'
+setvar! ValoritePrice '4400'
+setvar! AvaritePrice '10700'
+
+//=========================================
+//Tool Containers
+
+//Material location in container
+setvar! TopRowYLoc '60'
+setvar! BottomRowYLoc '100'
+
+setvar! IronXLoc '10'
+setvar! DullCopperXLoc '30'
+setvar! ShadowIronXLoc '50'
+setvar! CopperXLoc '70'
+setvar! BronzeXLoc '90'
+setvar! GoldXLoc '10'
+setvar! AgapiteXLoc '30'
+setvar! VeriteXLoc '50'
+setvar! ValoriteXLoc '70'
+setvar! AvariteXLoc '90'
+
+
+//Set Containers
+setvar! setContainerVariables '0'
+
+if setContainerVariables == '1'
+    overhead 'Set container for lockpicks' 2263
+    setvar lockpickContainer
+
+    overhead 'Set container for trap removal' 2263
+    setvar trapContainer
+
+    overhead 'Set container for spyglass' 2263
+    setvar spyglassContainer
+
+    overhead 'Set container for pickaxe' 2263
+    setvar pickaxeContainer
+
+    overhead 'Set container for skinning knife' 2263
+    setvar skinningKnifeContainer
+
+    overhead 'Set container for shovel' 2263
+    setvar shovelContainer
+
+    overhead 'Set container for hatchet' 2263
+    setvar hatchetContainer
+endif
+
+//=========================================
+// List Tools
+
+// lockpicks 5373
+// trap tool 29001
+// spyglass 5365
+// pickaxe 3718
+// skinning knife 11552
+// shovel 3897
+// hatchet 3908
+
+while findtype 5373|29001|5365|3718|11552|3897|3908 backpack as item
+    getlabel item label
+    
+    // Set container based on tool type
+    if 'lockpicks' in label
+        setvar! loopContainer lockpickContainer
+    elseif 'trap' in label
+        setvar! loopContainer trapContainer
+    elseif 'spyglass' in label
+        setvar! loopContainer spyglassContainer
+    elseif 'pickaxe' in label
+        setvar! loopContainer pickaxeContainer
+    elseif 'skinning' in label
+        setvar! loopContainer skinningKnifeContainer
+    elseif 'shovel' in label
+        setvar! loopContainer shovelContainer
+    elseif 'hatchet' in label
+        setvar! loopContainer hatchetContainer
+    endif
+
+    // Set price and location based on material type
+    if 'dull copper' in label
+        setvar! loopPrice DullCopperPrice
+        setvar! loopY TopRowYLoc
+        setvar! loopX DullCopperXLoc
+    elseif 'shadow iron' in label
+        setvar! loopPrice ShadowIronPrice
+        setvar! loopY TopRowYLoc
+        setvar! loopX ShadowIronXLoc
+    elseif 'copper' in label
+        setvar! loopPrice CopperPrice
+        setvar! loopY TopRowYLoc
+        setvar! loopX CopperXLoc
+    elseif 'bronze' in label
+        setvar! loopPrice BronzePrice
+        setvar! loopY TopRowYLoc
+        setvar! loopX BronzeXLoc
+    elseif 'gold' in label
+        setvar! loopPrice GoldPrice
+        setvar! loopY BottomRowYLoc
+        setvar! loopX GoldXLoc
+    elseif 'agapite' in label
+        setvar! loopPrice AgapitePrice
+        setvar! loopY BottomRowYLoc
+        setvar! loopX AgapiteXLoc
+    elseif 'verite' in label
+        setvar! loopPrice VeritePrice
+        setvar! loopY BottomRowYLoc
+        setvar! loopX VeriteXLoc
+    elseif 'valorite' in label
+        setvar! loopPrice ValoritePrice
+        setvar! loopY BottomRowYLoc
+        setvar! loopX ValoriteXLoc
+    elseif 'avarite' in label
+        setvar! loopPrice AvaritePrice
+        setvar! loopY BottomRowYLoc
+        setvar! loopX AvariteXLoc
+    else
+        // assume iron if no match
+        setvar! loopPrice IronPrice
+        setvar! loopY TopRowYLoc
+        setvar! loopX IronXLoc
+    endif
+    lift item 1
+    drop loopContainer loopX loopY 0
+    pause 500
+    if gumpexists 685310710
+         overhead "Disable Use Item Pricing Menu and try again!" 179
+         sysmsg "Disable Use Item Pricing Menu and try again!" 179
+         lift item 1 drop backpack
+         stop
+    endif
+    promptresponse loopPrice
+endwhile
+
+overhead 'Script Finished' 2263

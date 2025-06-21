@@ -1,0 +1,54 @@
+//Script created by mustang1x1
+//In order to prevent overlapping items, separate containers for cores/scrolls/extracts etc. are recommended
+//Item placement is designed for small paragon chests, items in other containers might overlap which each other
+
+//If you want to add other items to this script 
+//keep in mind that some items like tmaps, skillscrolls, etc. have the same ID and hue
+
+overhead 'Loading prices, please wait...' 2263
+
+//=========================================
+//Change this parameter value to 0 if you don't want to set target containers every time
+setvar! setContainerVariables '1'
+
+//=========================================
+//Tools
+
+//Agapite
+setvar! AgapiteLockpickPrice '1190'
+setvar! AgapiteTrapPrice '1190'
+setvar! AgapiteSpyglassPrice '1290'
+
+//Verite
+setvar! VeriteLockpickPrice '2490'
+setvar! VeriteTrapPrice '2490'
+setvar! VeriteSpyglassPrice '2490'
+
+
+//=========================================
+
+//Tools
+if setContainerVariables == '1'
+overhead 'Set container for lockpicks' 2263
+setvar lockpickContainer
+endif
+
+while findtype 'lockpicks' backpack as item
+    overhead 'Listing lockpicks' 2263
+    getlabel item label
+    if 'Agapite' in label
+        overhead 'Found agapite' 2263
+        lift item 1
+        drop lockpickContainer 10 60 0
+        pause 500
+        promptresponse AgapiteLockpickPrice
+    elseif 'Verite' in label
+        overhead 'Found verite' 2263
+        lift item 1
+        drop lockpickContainer 30 60 0
+        pause 500
+        promptresponse VeriteLockpickPrice
+    endif
+endwhile
+
+overhead 'Script Finished' 2263
