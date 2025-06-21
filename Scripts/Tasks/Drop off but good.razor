@@ -1,0 +1,39 @@
+// Settings
+@setvar! recyleUnidentifiedOnly '1' // 0 all magic items, 1 Unidentified
+
+
+// 1) Repair Bench
+if findtype "repair bench" ground -1 -1 2 as bench
+    dclick bench
+endif
+
+// 2) Deposite gold/doubloons
+if findtype "bank deposit safe" ground -1 -1 2 as safe
+    while findtype "gold coin" backpack as gold
+        lift gold 60000
+        drop safe -1 -1 -1
+        wait globalTimeout
+    endwhile
+    while findtype 2539 backpack 2125 as joubloons
+        lift joubloons 60000
+        drop safe -1 -1 -1
+        wait globalTimeout
+    endwhile
+endif
+
+// 3) Deposite to tomes
+
+
+// 4) Item recycler
+// 4a) Dump magic items
+if findtype "ornate elven chest|magic item recycler" ground -1 -1 2 as recycler
+    menu recycler recyleUnidentifiedOnly
+    dclick recycler
+    
+endif
+// 4b) Recycle items
+// 4c) Put dust in chest
+
+// 5) Resource stockpile
+// 5a) Target self
+// 5b) Target Item recycler
