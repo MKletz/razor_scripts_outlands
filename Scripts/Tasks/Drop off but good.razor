@@ -1,13 +1,39 @@
 // Settings
-@setvar! recyleUnidentifiedOnly '1' // 0 all magic items, 1 Unidentified
 
+// 0 all magic items, 1 Unidentified
+@setvar! recyleUnidentifiedOnly '1'
+// 1 target recycler with stockpile, 0 do not
+@setvar! restockOffRecycler '0'
 
-// 1) Repair Bench
+@setvar! useTomes '1'
+@setvar! useClothTome '0'
+@setvar! useCollectableCardTome '0'
+@setvar! useDyesTome '0'
+@setvar! useSpellScrollTome '0'
+@setvar! useShipUpgradeTome '0'
+@setvar! useTreasureTome '0'
+@setvar! useLoreTome '0'
+@setvar! useSkillScrollTome '0'
+@setvar! useFishingTome '0'
+@setvar! useAspectTome '0'
+@setvar! useLumberTome '0'
+@setvar! useArcaneRuneTome '0'
+@setvar! useOreTome '0'
+@setvar! useChainTome '0'
+@setvar! useSkinningTome '0'
+
+// Targets
+if not varexist lootdropoff
+    overhead "Target drop off box" 34
+    @setvar! lootdropoff
+endif
+
+// Repair items
 if findtype "repair bench" ground -1 -1 2 as bench
     dclick bench
 endif
 
-// 2) Deposite gold/doubloons
+// Deposite gold/doubloons
 if findtype "bank deposit safe" ground -1 -1 2 as safe
     while findtype "gold coin" backpack as gold
         lift gold 60000
@@ -22,18 +48,191 @@ if findtype "bank deposit safe" ground -1 -1 2 as safe
 endif
 
 // 3) Deposite to tomes
+if useTomes == '1'
+    if useClothTome == '1'
+        if not varexist clothTome
+            overhead "Target cloth tome" 34
+            @setvar! clothTome
+            menu clothTome 0
+        endif
+    endif
+    if useCollectableCardTome == '1'
+        if not varexist collectableCardTome
+            overhead "Target collectable card tome" 34
+            @setvar! collectableCardTome
+            menu collectableCardTome 0
+        endif
+    endif
+    if useDyesTome == '1'
+        if not varexist dyesTome
+            overhead "Target dyes tome" 34
+            @setvar! dyesTome
+            menu dyesTome 0
+        endif
+    endif
+    if useSpellScrollTome == '1'
+        if not varexist spellScrollTome
+            overhead "Target spell scroll tome" 34
+            @setvar! spellScrollTome
+            menu spellScrollTome 0
+        endif
+    endif
+    if useShipUpgradeTome == '1'
+        if not varexist shipUpgradeTome
+           overhead "Target ship upgrade tome" 34
+            @setvar! shipUpgradeTome
+            menu shipUpgradeTome 0
+        endif
+    endif
+    if useTreasureTome == '1'
+        if not varexist treasureTome
+            overhead "Target treasure map tome" 34
+            @setvar! treasureTome
+            menu treasureTome 0
+        endif
+    endif
+    if useLoreTome == '1'
+        if not varexist loreTome
+            overhead "Target lore tome" 34
+            @setvar! loreTome
+            menu loreTome 0
+        endif
+    endif
+    if useSkillScrollTome == '1'
+        if not varexist skillScrollTome
+            overhead "Target skill scroll tome" 34
+            @setvar! skillScrollTome
+            menu skillScrollTome 0
+        endif
+    endif
+    if useFishingTome == '1'
+        if not varexist fishingTome
+            overhead "Target fishing tome" 34
+            @setvar! fishingTome
+            menu fishingTome 0
+        endif
+    endif
+    if useAspectTome == '1'
+        if not varexist aspectTome
+            overhead "Target aspect tome" 34
+            @setvar! aspectTome
+            menu aspectTome 0
+        endif
+    endif
+    if useLumberTome == '1'
+        if not varexist lumberTome
+            overhead "Target lumber tome" 34
+            @setvar! lumberTome
+            menu lumberTome 0
+        endif
+    endif
+    if useArcaneRuneTome == '1'
+        if not varexist arcaneRuneTome
+            overhead "Target arcane rune tome" 34
+            @setvar! arcaneRuneTome
+            menu arcaneRuneTome 0
+        endif
+    endif
+    if useOreTome == '1'
+        if not varexist oreTome
+            overhead "Target ore tome" 34
+            @setvar! oreTome
+            menu oreTome 0
+        endif
+    endif
+    if useChainTome == '1'
+        if not varexist chainTome
+            overhead "Target chain tome" 34
+            @setvar! chainTome
+            menu chainTome 0
+        endif
+    endif
+    if useSkinningTome == '1'
+        if not varexist skinningTome
+            overhead "Target skinning tome" 34
+            @setvar! skinningTome
+            menu skinningTome 0
+        endif
+    endif
+endif
 
-
-// 4) Item recycler
-// 4a) Dump magic items
+// Item recycler + stockpile
+@setvar! recyclerGump 4045111101
 if findtype "ornate elven chest|magic item recycler" ground -1 -1 2 as recycler
     menu recycler recyleUnidentifiedOnly
     dclick recycler
-    
-endif
-// 4b) Recycle items
-// 4c) Put dust in chest
+    waitforgump recyclerGump
+    //Identify Items
+    gumpresponse 7
+    waitforgump recyclerGump
+    //Begin Recycle
+    gumpresponse 6
+    waitforgump recyclerGump
+    //Begin Recycle confirm
+    gumpresponse 6
+    waitforgump recyclerGump
+    gumpclose recyclerGump
 
-// 5) Resource stockpile
-// 5a) Target self
-// 5b) Target Item recycler
+    // Resource stockpile
+    if findtype "resource container" ground -1 -1 2 as resource
+        menu resource 0
+        wft 500
+        target self
+        wait 200
+
+        if restockOffRecycler == '1'
+            menu resource 0
+            wft 500
+            target recycler
+            wait 200
+        endif
+    endif
+endif
+// TODO: Put dust in chest
+
+
+while findtype 31169|3568|3570|3571|3572|3573|3713|3719|3721|3740|3742|3762|3763|3834|3909|3911|3913|3915|3917|3920|3922|3932|3934|3937|3938|5040|5042|5044|5046|5049|5112|5115|5117|5119|5121|5123|5125|5127|5177|5179|5181|5182|5185|5187|7026|7027|7029|7031|7033|7034|7035|7107|7109|10245|20006|20008|20010|20012|20014|20016|22187|30988|30989|30990|30991|30992|30993|30994|30995|30996|30997|30998|30999|31000|31001|31002|31014|31017|31019|31021|31023|31025|31027|31029|31031|31033|31035|31037|31038|31041|31043|31045|31047|31049|31051|31053|31055|31128|31130|31141|31142|31176|31178|31180|31182|31184|31186|31188|31190|576|2472|2475|2594|2597|2744|2750|2760|2771|2778|2799|3648|3649|3650|3651|3708|3712|3735|3736|3737|3738|3827|3836|3838|3839|3842|3843|3985|4248|5356|5359|5981|8826|12686|15297|17087|17686|19717|22244|22336|23996|23997|24343|24434|29025|29036|29040|29832|29833|43166|43179|43206|48405|48407|3834|6238|8786|8787|8901|11881|11882|11883|11884|11885|11886|11887|11888|11889|11890|11891|11893|11895|29103|29104|29105|41471|42516|45340|45823|5056|5059|5060|5061|5063|5070|5074|5075|5076|5078|5085|5089|5090|5101|5103|5105|5106|5129|5131|5132|5135|5138|5139|5142|5143|5144|5146|5201|5203|5204|5205|5207|7169|7170|7173|7175|7177|7179|7181|7610|7947|31003|31004|31005|31006|31007|31008|31009|31010|31011|31012|31015|31191|4025|4026|24434|43206|29363|43166|22336|29348|17087|3985|8826|3827|29030|3836|5981|4248|5359|3839|3838|3843|2597|29036|48407|3834|3865|3859|3885|3856|3878|3877|3873|3861|3862|576|5123|7177|7027|3920|5131|5179|5075|3980|5060|5076|5042|10245|3938|3913|7169|3909|5063|5089|3981|7170|7033|3976|3762|5040|5103|5117|7181|7029|3568|6264|3742|5139|6263|7026|5125|3740|5121|3973|3974|5204|5105|5185|5078|5115|7175|5059|7034|3915|5112|5070|5049|5119|5205|5046|3962|3934|7035|3911|7179|5106|5143|3573|3719|5177|7610|5181|3917|5132|3963|7031|5207|5056|5085|3763|5129|5187|3721|3972|5138|3570|5101|5061|5074|5142|5182|5146|6265|5090|5203|5044|5144|3932|5201|5127|3572|7173|5135|3937|3571|22326|27611|9917|3821|5356|8455|5362|45315|8454|22187|5901|7163|3617|3903|12686 backpack as item
+    getlabel item checkForBlessed
+    if "blessed" in checkForBlessed or "aspect" in checkForBlessed
+        @ignore item
+    else
+        getlabel lootdropoff desc    
+        if "125 items" in desc
+            overhead "Our box is full!" 34
+            overhead "Our box is full!" 34
+            overhead "Our box is full!" 34
+            sysmsg "Our box is full!" 34
+            sysmsg "Our box is full!" 34
+            sysmsg "Our box is full!" 34
+            break
+        endif
+        if moveOnlyUnidentifiedItems = 1
+            if "unidentified" in checkForBlessed
+                lift item 60000
+                drop lootdropoff -1 -1 -1
+                wait globalTimeout
+            endif 
+        else
+            lift item 60000
+            drop lootdropoff -1 -1 -1
+            wait globalTimeout 
+        endif
+        @ignore item
+    endif
+endwhile
+
+// Storage Shelf
+if find storageShelf ground -1 -1 2 as shelf
+    // Restock off of self multiple times to clear excess bags
+    menu shelf 0
+    wft 200
+    target self
+    menu shelf 0
+    wft 200
+    target self
+    menu shelf 0
+    wft 200
+    target self
+    menu shelf 1
+    wait 200
+endif
