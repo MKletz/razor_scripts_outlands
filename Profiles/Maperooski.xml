@@ -13,8 +13,8 @@
 	<property name="SortCounters" type="System.Boolean">True</property>
 	<property name="QueueActions" type="System.Boolean">False</property>
 	<property name="QueueTargets" type="System.Boolean">False</property>
-	<property name="WindowX" type="System.Int32">343</property>
-	<property name="WindowY" type="System.Int32">255</property>
+	<property name="WindowX" type="System.Int32">668</property>
+	<property name="WindowY" type="System.Int32">257</property>
 	<property name="CountStealthSteps" type="System.Boolean">True</property>
 	<property name="SysColor" type="System.Int32">68</property>
 	<property name="WarningColor" type="System.Int32">37</property>
@@ -27,8 +27,8 @@
 	<property name="ImageFormat" type="System.String">jpg</property>
 	<property name="UndressConflicts" type="System.Boolean">True</property>
 	<property name="Systray" type="System.Boolean">False</property>
-	<property name="RazorWidth" type="System.Int32">1193</property>
-	<property name="RazorHeight" type="System.Int32">829</property>
+	<property name="RazorWidth" type="System.Int32">1351</property>
+	<property name="RazorHeight" type="System.Int32">1029</property>
 	<property name="SellAgentMax" type="System.Int32">99</property>
 	<property name="SkillListCol" type="System.Int32">3</property>
 	<property name="SkillListAsc" type="System.Boolean">True</property>
@@ -273,6 +273,11 @@
 		<scriptvariable serial="0x5CEF0826" name="skinningKnifeContainer" />
 		<scriptvariable serial="0x5CEF013E" name="shovelContainer" />
 		<scriptvariable serial="0x41CB446C" name="hatchetContainer" />
+		<scriptvariable serial="0x58A056C7" name="tomeChest" />
+		<scriptvariable serial="0x5AA299B2" name="aspectTome" />
+		<scriptvariable serial="0x6D8B4F88" name="treasureTome" />
+		<scriptvariable serial="0x5AA304B7" name="skillScrollTome" />
+		<scriptvariable serial="0x5AA299B2" name="arcaneRuneTome" />
 	</scriptvariables>
 	<friends />
 	<textfilters>
