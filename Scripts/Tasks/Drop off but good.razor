@@ -4,7 +4,7 @@
 @setvar! recyleUnidentifiedOnly '1'
 // 1 target recycler with stockpile, 0 do not
 @setvar! restockOffRecycler '0'
-@setvar! useStorageShelF '1'
+@setvar! useStorageShelf '1'
 
 @setvar! useTomes '1'
 @setvar! useClothTome '0'
@@ -213,7 +213,7 @@ while findtype 31169|3568|3570|3571|3572|3573|3713|3719|3721|3740|3742|3762|3763
 endwhile
 
 // Storage Shelf
-if useStorageShelF == '1'
+if useStorageShelf == '1'
     if not varexist shelf
         overhead "Target storage shelf" 34
         @setvar! shelf
