@@ -1,0 +1,13 @@
+@clearignore 
+createlist bags
+clearlist bags
+
+if findtypelist bags 'bag' self
+    foreach x in bags
+        overhead "Opening {{x}}"
+        dclick x
+        while queued
+            wait 700
+        endwhile
+    endfor
+endif

@@ -43,6 +43,7 @@ if useTomes == '1'
             @setvar! clothTome
         endif
         menu clothTome 0
+        wait globalTimeout
     endif
     if useCollectableCardTome == '1'
         if not varexist collectableCardTome
@@ -50,6 +51,7 @@ if useTomes == '1'
             @setvar! collectableCardTome
         endif
         menu collectableCardTome 0
+        wait globalTimeout
     endif
     if useDyesTome == '1'
         if not varexist dyesTome
@@ -57,6 +59,7 @@ if useTomes == '1'
             @setvar! dyesTome
         endif
         menu dyesTome 0
+        wait globalTimeout
     endif
     if useSpellScrollTome == '1'
         if not varexist spellScrollTome
@@ -64,6 +67,7 @@ if useTomes == '1'
             @setvar! spellScrollTome
         endif
         menu spellScrollTome 0
+        wait globalTimeout
     endif
     if useShipUpgradeTome == '1'
         if not varexist shipUpgradeTome
@@ -71,6 +75,7 @@ if useTomes == '1'
             @setvar! shipUpgradeTome
         endif
         menu shipUpgradeTome 0
+        wait globalTimeout
     endif
     if useTreasureTome == '1'
         if not varexist treasureTome
@@ -78,6 +83,7 @@ if useTomes == '1'
             @setvar! treasureTome
         endif
         menu treasureTome 0
+        wait globalTimeout
     endif
     if useLoreTome == '1'
         if not varexist loreTome
@@ -85,6 +91,7 @@ if useTomes == '1'
             @setvar! loreTome
         endif
         menu loreTome 0
+        wait globalTimeout
     endif
     if useSkillScrollTome == '1'
         if not varexist skillScrollTome
@@ -92,6 +99,7 @@ if useTomes == '1'
             @setvar! skillScrollTome
         endif
         menu skillScrollTome 0
+        wait globalTimeout
     endif
     if useFishingTome == '1'
         if not varexist fishingTome
@@ -99,6 +107,7 @@ if useTomes == '1'
             @setvar! fishingTome
         endif
         menu fishingTome 0
+        wait globalTimeout
     endif
     if useAspectTome == '1'
         if not varexist aspectTome
@@ -106,6 +115,7 @@ if useTomes == '1'
             @setvar! aspectTome
         endif
         menu aspectTome 0
+        wait globalTimeout
     endif
     if useLumberTome == '1'
         if not varexist lumberTome
@@ -113,6 +123,7 @@ if useTomes == '1'
             @setvar! lumberTome
         endif
         menu lumberTome 0
+        wait globalTimeout
     endif
     if useArcaneRuneTome == '1'
         if not varexist arcaneRuneTome
@@ -120,6 +131,7 @@ if useTomes == '1'
             @setvar! arcaneRuneTome
         endif
         menu arcaneRuneTome 0
+        wait globalTimeout
     endif
     if useOreTome == '1'
         if not varexist oreTome
@@ -127,6 +139,7 @@ if useTomes == '1'
             @setvar! oreTome
         endif
         menu oreTome 0
+        wait globalTimeout
     endif
     if useChainTome == '1'
         if not varexist chainTome
@@ -134,6 +147,7 @@ if useTomes == '1'
             @setvar! chainTome
         endif
         menu chainTome 0
+        wait globalTimeout
     endif
     if useSkinningTome == '1'
         if not varexist skinningTome
@@ -141,6 +155,7 @@ if useTomes == '1'
             @setvar! skinningTome
         endif
         menu skinningTome 0
+        wait globalTimeout
     endif
 endif
 
@@ -178,6 +193,27 @@ if findtype "ornate elven chest|magic item recycler" ground -1 -1 2 as recycler
 endif
 // TODO: Put dust in chest
 
+// Storage Shelf
+if useStorageShelf == '1'
+    if not varexist shelf
+        overhead "Target storage shelf" 34
+        @setvar! shelf
+    endif
+    // Restock off of self multiple times to clear excess bags
+    menu shelf 0
+    wft 200
+    target self
+    wait globalTimeout
+    menu shelf 0
+    wft 200
+    target self
+    wait globalTimeout
+    menu shelf 0
+    wft 200
+    target self
+    wait globalTimeout
+endif
+
 if not varexist lootdropoff
     overhead "Target drop off box" 34
     @setvar! lootdropoff
@@ -211,26 +247,9 @@ while findtype 31169|3568|3570|3571|3572|3573|3713|3719|3721|3740|3742|3762|3763
         @ignore item
     endif
 endwhile
+wait globalTimeout
 
 // Storage Shelf
 if useStorageShelf == '1'
-    if not varexist shelf
-        overhead "Target storage shelf" 34
-        @setvar! shelf
-    endif
-
-    // Restock off of self multiple times to clear excess bags
-    menu shelf 0
-    wft 200
-    target self
-    wait globalTimeout
-    menu shelf 0
-    wft 200
-    target self
-    wait globalTimeout
-    menu shelf 0
-    wft 200
-    target self
-    wait globalTimeout
     menu shelf 1
 endif

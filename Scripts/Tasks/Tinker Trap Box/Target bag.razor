@@ -1,0 +1,10 @@
+@clearignore 
+createlist bags
+clearlist bags
+
+if findtypelist bags 'bag' self
+    foreach x in bags
+        overhead "Opening {{x}}"
+        target x
+    endfor
+endif

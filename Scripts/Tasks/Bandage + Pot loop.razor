@@ -18,6 +18,8 @@ else
     @setvar! drink_Panacea 0
 endif
 
+overhead "Now keeping you alive" 34
+
 while not dead
     if findtype "tray" backpack as food
         if not findbuff "food satisfaction"

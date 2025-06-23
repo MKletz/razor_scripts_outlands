@@ -3,7 +3,7 @@
 	<property name="DisplaySkillChanges" type="System.Boolean">False</property>
 	<property name="TitleBarText" type="System.String">UO - {char}</property>
 	<property name="TitleBarDisplay" type="System.Boolean">True</property>
-	<property name="AutoSearch" type="System.Boolean">True</property>
+	<property name="AutoSearch" type="System.Boolean">False</property>
 	<property name="NoSearchPouches" type="System.Boolean">True</property>
 	<property name="CounterWarnAmount" type="System.Int32">5</property>
 	<property name="CounterWarn" type="System.Boolean">True</property>
@@ -13,22 +13,22 @@
 	<property name="SortCounters" type="System.Boolean">True</property>
 	<property name="QueueActions" type="System.Boolean">False</property>
 	<property name="QueueTargets" type="System.Boolean">False</property>
-	<property name="WindowX" type="System.Int32">668</property>
-	<property name="WindowY" type="System.Int32">257</property>
+	<property name="WindowX" type="System.Int32">552</property>
+	<property name="WindowY" type="System.Int32">256</property>
 	<property name="CountStealthSteps" type="System.Boolean">True</property>
 	<property name="SysColor" type="System.Int32">68</property>
 	<property name="WarningColor" type="System.Int32">37</property>
 	<property name="ExemptColor" type="System.Int32">1152</property>
 	<property name="Opacity" type="System.Int32">100</property>
-	<property name="BlockDismount" type="System.Boolean">False</property>
+	<property name="BlockDismount" type="System.Boolean">True</property>
 	<property name="CapFullScreen" type="System.Boolean">False</property>
 	<property name="CapPath" type="System.String">C:\Users\jaseo\Pictures\RazorScreenShots</property>
 	<property name="CapTimeStamp" type="System.Boolean">True</property>
 	<property name="ImageFormat" type="System.String">jpg</property>
 	<property name="UndressConflicts" type="System.Boolean">True</property>
 	<property name="Systray" type="System.Boolean">False</property>
-	<property name="RazorWidth" type="System.Int32">1351</property>
-	<property name="RazorHeight" type="System.Int32">1029</property>
+	<property name="RazorWidth" type="System.Int32">1085</property>
+	<property name="RazorHeight" type="System.Int32">411</property>
 	<property name="SellAgentMax" type="System.Int32">99</property>
 	<property name="SkillListCol" type="System.Int32">3</property>
 	<property name="SkillListAsc" type="System.Boolean">True</property>
@@ -202,15 +202,16 @@
 	</agents>
 	<dresslists>
 		<list name="Mace Trapper">
-			<item serial="1608168038" />
-			<item serial="1608168040" />
-			<item serial="1608168042" />
-			<item serial="1608168043" />
-			<item serial="1608168047" />
 			<item serial="1244070882" />
-			<item serial="1607905071" />
-			<item serial="1608168046" />
-			<item serial="1608168039" />
+			<item serial="1324416764" />
+			<item serial="1111208720" />
+			<item serial="1111208721" />
+			<item serial="1111208722" />
+			<item serial="1111208723" />
+			<item serial="1111208724" />
+			<item serial="1111208725" />
+			<item serial="1111208729" />
+			<item serial="1111208728" />
 		</list>
 	</dresslists>
 	<hotkeys>
@@ -278,6 +279,7 @@
 		<scriptvariable serial="0x6D8B4F88" name="treasureTome" />
 		<scriptvariable serial="0x5AA304B7" name="skillScrollTome" />
 		<scriptvariable serial="0x5AA299B2" name="arcaneRuneTome" />
+		<scriptvariable serial="0x48EAD156" name="shelf" />
 	</scriptvariables>
 	<friends />
 	<textfilters>
