@@ -1,10 +1,12 @@
-// Timers
-@setvar! globalTimeout 650
-
 // Potion Settings
 @setvar! drink_red 1
-@setvar! drink_red_stam 75
-@setvar! drink_heal_hp 60
+@setvar! drink_heal_hp 70
+
+if maxstam > 45
+    @setvar! drink_red_stam 90
+else
+    @setvar! drink_red_stam 35
+endif
 
 if skill 'Alchemy' >= 80
     @setvar! drink_white 1
@@ -18,60 +20,31 @@ else
     @setvar! drink_Panacea 0
 endif
 
+if skill 'Healing' > 0
+    @setvar! use_bandages 1
+else
+    @setvar! use_bandages 0
+endif
+
+@setvar! cast_heal_hp 80
+if skill 'Magery' > 0
+    @setvar! use_magery 1
+else
+    @setvar! use_magery 0
+endif
+
 overhead "Now keeping you alive" 34
 
 while not dead
-    if findtype "tray" backpack as food
-        if not findbuff "food satisfaction"
-            overhead 'Eating Food!' 68  
-            dclick food
-            wait globalTimeout
-        endif
-    endif
-
-    if hp != maxhp and bandaging = 0 
-        if findtype "clean bandage%s%" backpack
-            hotkey 'Bandage Self' 
-            wait globalTimeout
-        else
-            overhead "Out of Bandages" 34
-        endif
-    endif 
-
-    if paralyzed
-        overhead 'Paralyzed!' 38
-        if findtype "pouch" backpack 38 any any 
-            say '[pouch'
-            wait globalTimeout
-        else
-            overhead "Out of Trap Pouch" 34
-        endif 
+    // Cast mini heal
+    if use_magery = 1 and hp < cast_heal_hp and mana > 10
+        cast 'heal'
+        wft 200
+        target self
+        wait 650
     endif
     
-    if drink_Panacea = 1 and cooldown "Pancea" = 0
-        if findbuff "bleed" or findbuff "disease"
-            if findtype "Orange Potion" self
-                wait globalTimeout
-                overhead 'Drinking Panacea!' 48
-                potion "cure"
-                wait globalTimeout
-            else
-            overhead "Out of Cure Potion" 34
-        endif 
-        endif
-    endif
-
-    if poisoned
-        if findtype "Orange Potion" self
-            wait globalTimeout            
-            overhead 'Drinking cure!' 48
-            potion "cure" 
-            wait globalTimeout      
-        else
-            overhead "Out of Cure Potion" 34
-        endif 
-    endif
-
+    // Drink healing potion
     if hp < drink_heal_hp
         if findtype 3852 self as PotsHeal 
             getlabel PotsHeal LabelPotsHeal
@@ -80,13 +53,66 @@ while not dead
             else
                 overhead 'Drinking heal!' 68  
                 dclick PotsHeal
-                wait globalTimeout  
+                wait 650  
             endif
         else
             overhead "Out of Healing Potion" 34
         endif 
     endif
+
+    // Bandage self
+    if use_bandages = 1 and hp != maxhp and bandaging = 0
+        if findtype "clean bandage%s%" backpack
+            hotkey 'Bandage Self' 
+            wait 650
+        else
+            overhead "Out of Bandages" 34
+        endif
+    endif 
+
+    // Explosion Pouch
+    if paralyzed
+        overhead 'Paralyzed!' 38
+        if findtype "pouch" backpack 38 any any 
+            say '[pouch'
+            wait 650
+        else
+            overhead "Out of Trap Pouch" 34
+        endif 
+    endif
     
+    // Drink cure potion for bleed/disease
+    if drink_Panacea = 1 and cooldown "Pancea" = 0
+        if findbuff "bleed" or findbuff "disease"
+            if findtype "Orange Potion" self
+                wait 650
+                overhead 'Drinking Panacea!' 48
+                potion "cure"
+                wait 650
+            else
+            overhead "Out of Cure Potion" 34
+        endif 
+        endif
+    endif
+
+    // Drink cure potion for poison
+    if poisoned
+        if findtype "Orange Potion" self
+            wait 650            
+            overhead 'Drinking cure!' 48
+            potion "cure" 
+            wait 650      
+        elseif use_magery = 1
+            cast "Cure"
+            wft 200
+            target self
+            wait 650
+        else
+            overhead "Out of Cure Potion" 34
+        endif 
+    endif
+    
+    // Drink refresh potion
     if drink_red = 1 and stam <  drink_red_stam
         if findtype "Red Potion" backpack as pot
             dclick pot
@@ -96,6 +122,8 @@ while not dead
         endif
     endif
 
+    // Buffs
+    // Strength
     if drink_white = 1
         if cooldown "Strength Potion" < 2000 or not findbuff "Strength"
             if findtype "White Potion" backpack as pot
@@ -106,7 +134,7 @@ while not dead
             endif
         endif
     endif
-
+    // Agility
     if drink_blue = 1
         if cooldown "Agility Potion" < 2000 or not findbuff "Agility"
             if findtype "Blue Potion" backpack as pot
@@ -117,7 +145,7 @@ while not dead
             endif
         endif
     endif
-
+    // Magic Resist
     if drink_black = 1
         if cooldown "Magic Resist Potion" < 2000 or not findbuff "Magic Resist Potion"
             if findtype "Black Potion" backpack as pot
@@ -128,5 +156,40 @@ while not dead
             endif
         endif
     endif
+
+    // Food satisfaction
+    if findtype "tray" backpack as food
+        if not findbuff "food satisfaction"
+            overhead 'Eating Food!' 68  
+            dclick food
+            wait 650
+        endif
+    endif
+
+    // Magery
+    if use_magery = 1
+        if not findbuff "Protection" and mana > 40
+            cast "Protection"
+            wait 650
+        endif
+
+        if not findbuff "Magic Reflection" and mana > 40
+            cast "Magic Reflection"
+            wait 650
+        endif
+
+        if not findbuff "Reactive Armor" and mana > 40
+            cast "Reactive Armor"
+            wait 650
+        endif
+
+        if not findbuff "Cunning" and mana > 40
+            cast "Cunning"
+            wft 200
+            target self
+            wait 650
+        endif
+    endif
+
    pause 250
 endwhile 
