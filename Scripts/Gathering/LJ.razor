@@ -1,0 +1,115 @@
+if not listexists "lumber_actions"
+    createlist "lumber_actions"
+endif
+
+// Recall conditions
+if inlist "lumber_actions" "escape"
+    say '[recall house'
+    clearlist "lumber_actions"
+    stop
+endif
+
+if insysmsg "Now tracking"
+    overhead "Red Alert!" 34
+    pushlist "lumber_actions" "escape"
+    replay
+endif
+
+if diffweight <= 30
+    overhead "Overweight" 34
+    pushlist "lumber_actions" "escape"
+    replay
+endif
+
+if inlist "lumber_actions" "summon"
+    overhead "Summoning Friends" 34
+    cast "Water Elemental"
+    wait 5000
+    say "All Guard Me"
+endif
+
+if inlist "lumber_actions" "buff"
+    if not findbuff "Magic Reflection" and mana > 40
+        cast "Magic Reflection"
+        wait 2000
+    endif
+
+    if not findbuff "Reactive Armor" and mana > 40
+        cast "Reactive Armor"
+        wait 2000
+    endif
+endif
+
+// Wait condictions
+if inlist "lumber_actions" "save"
+    for 30
+        overhead 'Waiting for world save...'
+        wait 500
+        if insysmsg 'save complete'
+            overhead 'Save complete - continue on!' 88
+            wait 250
+            replay
+        elseif insysmsg "now tracking"
+            pushlist "lumber_actions" "escape"
+            wait 250
+            replay
+        endif
+    endfor
+endif
+
+clearsysmsg
+clearlist "lumber_actions"
+while not dead
+    if insysmsg 'world is saving'
+        pushlist "lumber_actions" "save"
+        replay
+    endif
+
+    if insysmsg "Now tracking"
+        overhead "Red Alert!" 34
+        pushlist "lumber_actions" "escape"
+        replay
+    endif
+
+    if lhandempty ?? 0 
+        if findtype "hatchet" backpack
+            dclicktype 'hatchet' backpack
+            wait 200
+        else
+            overhead "No more hatchets!" 34
+            pushlist "lumber_actions" "escape"
+            replay
+        endif
+    endif
+
+    overhead 'Lumberjacking' 0
+    hotkey 'Use item in hand'
+    wft 200
+    target self
+
+    if insysmsg "Now tracking"
+        overhead "Red Alert!" 34
+        pushlist "lumber_actions" "escape"
+        replay
+    endif
+
+    if insysmsg 'You do not see any' or insysmsg 'You cannot produce any wood'
+        overhead 'Move to next spot' 88
+        wait 250
+    endif
+
+    if insysmsg "travel"
+        overhead 'Waiting for travel...'
+        wait 1000
+    endif
+
+    if followers = 0
+        pushlist "lumber_actions" "summon"
+        replay
+    endif
+
+    if not findbuff "Magic Reflection" or not findbuff "Reactive Armor"
+        pushlist "lumber_actions" "buff"
+        replay
+    endif
+endwhile
