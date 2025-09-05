@@ -1,35 +1,55 @@
-if not listexists "lumber_actions"
-    createlist "lumber_actions"
+if not listexists "harvest_actions"
+    createlist "harvest_actions"
 endif
 
+while not findbuff "Tracking Hunting"
+    skill 'tracking'
+    waitforgump 4267467659
+    gumpresponse 6
+    waitforgump 4267467659
+    gumpclose
+endwhile
+
 // Recall conditions
-if inlist "lumber_actions" "escape"
+if inlist "harvest_actions" "escape"
+        // Explosion Pouch
+    if paralyzed
+        overhead 'Paralyzed!' 38
+        if findtype "pouch" backpack 38 any any 
+            say '[pouch'
+            wait 100
+        else
+            overhead "Out of Trap Pouch" 34
+        endif 
+    endif
+
     say '[recall house'
-    clearlist "lumber_actions"
+    clearlist "harvest_actions"
     stop
 endif
 
 if insysmsg "Now tracking"
     overhead "Red Alert!" 34
-    pushlist "lumber_actions" "escape"
+    pushlist "harvest_actions" "escape"
     replay
 endif
 
 if diffweight <= 30
     overhead "Overweight" 34
-    pushlist "lumber_actions" "escape"
+    pushlist "harvest_actions" "escape"
     replay
 endif
 
-if inlist "lumber_actions" "summon"
+// Magery Stuff
+if inlist "harvest_actions" "summon"
     overhead "Summoning Friends" 34
     cast "Water Elemental"
     wait 5000
     say "All Guard Me"
 endif
 
-if inlist "lumber_actions" "buff"
-    if not findbuff "Magic Reflection" and mana > 40
+if inlist "harvest_actions" "buff"
+     if not findbuff "Magic Reflection" and mana > 40
         cast "Magic Reflection"
         wait 2000
     endif
@@ -41,7 +61,7 @@ if inlist "lumber_actions" "buff"
 endif
 
 // Wait condictions
-if inlist "lumber_actions" "save"
+if inlist "harvest_actions" "sav2e"
     for 30
         overhead 'Waiting for world save...'
         wait 500
@@ -50,7 +70,7 @@ if inlist "lumber_actions" "save"
             wait 250
             replay
         elseif insysmsg "now tracking"
-            pushlist "lumber_actions" "escape"
+            pushlist "harvest_actions" "escape"
             wait 250
             replay
         endif
@@ -58,16 +78,16 @@ if inlist "lumber_actions" "save"
 endif
 
 clearsysmsg
-clearlist "lumber_actions"
+clearlist "harvest_actions"
 while not dead
     if insysmsg 'world is saving'
-        pushlist "lumber_actions" "save"
-        replay
+     pushlist "harvest_actions" "save"
+         replay
     endif
 
     if insysmsg "Now tracking"
         overhead "Red Alert!" 34
-        pushlist "lumber_actions" "escape"
+        pushlist "harvest_actions" "escape"
         replay
     endif
 
@@ -75,21 +95,24 @@ while not dead
         if findtype "hatchet" backpack
             dclicktype 'hatchet' backpack
             wait 200
+        elseif findtype "pickaxe" backpack
+             dclicktype "pickaxe" backpack
+             wait 200
         else
-            overhead "No more hatchets!" 34
-            pushlist "lumber_actions" "escape"
+            overhead "No more tools!" 34
+            pushlist "harvest_actions" "escape"
             replay
         endif
     endif
 
-    overhead 'Lumberjacking' 0
+    overhead 'Harvesting' 0
     hotkey 'Use item in hand'
     wft 200
     target self
 
     if insysmsg "Now tracking"
         overhead "Red Alert!" 34
-        pushlist "lumber_actions" "escape"
+        pushlist "harvest_actions" "escape"
         replay
     endif
 
@@ -104,12 +127,12 @@ while not dead
     endif
 
     if followers = 0
-        pushlist "lumber_actions" "summon"
+        pushlist "harvest_actions" "summon"
         replay
     endif
 
     if not findbuff "Magic Reflection" or not findbuff "Reactive Armor"
-        pushlist "lumber_actions" "buff"
+        pushlist "harvest_actions" "buff"
         replay
     endif
 endwhile

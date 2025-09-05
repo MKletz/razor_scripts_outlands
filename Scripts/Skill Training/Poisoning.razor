@@ -1,0 +1,13 @@
+while skill 'poisoning' < 80
+    menu 0x426514BB 0
+    wait 5000
+    if poisoned
+        if findtype "Orange Potion" self
+            wait 650            
+            overhead 'Drinking cure!' 48
+            potion "cure" 
+            wait 650
+        endif 
+    endif
+    loop
+endwhile

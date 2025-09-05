@@ -3,7 +3,7 @@
 	<property name="DisplaySkillChanges" type="System.Boolean">False</property>
 	<property name="TitleBarText" type="System.String">UO - {char}</property>
 	<property name="TitleBarDisplay" type="System.Boolean">True</property>
-	<property name="AutoSearch" type="System.Boolean">False</property>
+	<property name="AutoSearch" type="System.Boolean">True</property>
 	<property name="NoSearchPouches" type="System.Boolean">True</property>
 	<property name="CounterWarnAmount" type="System.Int32">5</property>
 	<property name="CounterWarn" type="System.Boolean">True</property>
@@ -13,8 +13,8 @@
 	<property name="SortCounters" type="System.Boolean">True</property>
 	<property name="QueueActions" type="System.Boolean">False</property>
 	<property name="QueueTargets" type="System.Boolean">False</property>
-	<property name="WindowX" type="System.Int32">552</property>
-	<property name="WindowY" type="System.Int32">256</property>
+	<property name="WindowX" type="System.Int32">155</property>
+	<property name="WindowY" type="System.Int32">920</property>
 	<property name="CountStealthSteps" type="System.Boolean">True</property>
 	<property name="SysColor" type="System.Int32">68</property>
 	<property name="WarningColor" type="System.Int32">37</property>
@@ -27,8 +27,8 @@
 	<property name="ImageFormat" type="System.String">jpg</property>
 	<property name="UndressConflicts" type="System.Boolean">True</property>
 	<property name="Systray" type="System.Boolean">False</property>
-	<property name="RazorWidth" type="System.Int32">1085</property>
-	<property name="RazorHeight" type="System.Int32">411</property>
+	<property name="RazorWidth" type="System.Int32">160</property>
+	<property name="RazorHeight" type="System.Int32">28</property>
 	<property name="SellAgentMax" type="System.Int32">99</property>
 	<property name="SkillListCol" type="System.Int32">3</property>
 	<property name="SkillListAsc" type="System.Boolean">True</property>
@@ -88,7 +88,7 @@
 	<property name="StealthStepsFormat" type="System.String">Steps: {step}</property>
 	<property name="ShowFriendOverhead" type="System.Boolean">False</property>
 	<property name="DisplaySkillChangesOverhead" type="System.Boolean">False</property>
-	<property name="GrabHotBag" type="System.String">1792158675</property>
+	<property name="GrabHotBag" type="System.String">1099605792</property>
 	<property name="MacroActionDelay" type="System.Boolean">False</property>
 	<property name="DisableMacroPlayFinish" type="System.Boolean">False</property>
 	<property name="ShowBandageTimer" type="System.Boolean">True</property>
@@ -155,10 +155,8 @@
 		<Buy-9 enabled="False" />
 		<Buy-10 enabled="False" />
 		<IgnoreList enabled="False" />
-		<Organizer-1 hotbag="1792158675">
-			<item id="5365" />
+		<Organizer-1 hotbag="1345956260">
 			<item id="5373" />
-			<item id="29001" />
 		</Organizer-1>
 		<Organizer-2 hotbag="0" />
 		<Organizer-3 hotbag="0" />
@@ -190,8 +188,9 @@
 		<Restock-9 hotbag="1099785917" />
 		<Restock-10 hotbag="1106090720" />
 		<Scavenger enabled="False">
-			<bag serial="0x41771DD6" />
-			<item id="4233" />
+			<bag serial="0x5474AE6C" />
+			<item id="3903" />
+			<item id="7163" />
 		</Scavenger>
 		<AutoSearchExemptions />
 		<Sell enabled="True">
@@ -203,15 +202,14 @@
 	<dresslists>
 		<list name="Mace Trapper">
 			<item serial="1244070882" />
-			<item serial="1324416764" />
-			<item serial="1111208720" />
-			<item serial="1111208721" />
-			<item serial="1111208722" />
-			<item serial="1111208723" />
-			<item serial="1111208724" />
-			<item serial="1111208725" />
-			<item serial="1111208729" />
-			<item serial="1111208728" />
+			<item serial="1250460841" />
+			<item serial="1250460845" />
+			<item serial="1250460843" />
+			<item serial="1250460842" />
+			<item serial="1250460840" />
+			<item serial="1250460844" />
+			<item serial="1250460847" />
+			<item serial="1250460848" />
 		</list>
 	</dresslists>
 	<hotkeys>
@@ -233,6 +231,7 @@
 		<overheadmessage searchtext="Repaired " message="Repaired {2} {3}" hue="68" />
 		<overheadmessage searchtext="need of repairs" message="Fully Repaired" hue="68" />
 		<overheadmessage searchtext="You must have a skinning knife equipped or in your pack in order to do any carving." message="Missing Skinning Knife" hue="34" />
+		<overheadmessage searchtext="Harvest double yield/loot triggered." message="Harvest Proc Value!!!" hue="673" />
 	</overheadmessages>
 	<containerlabels />
 	<macrovariables />
@@ -278,8 +277,14 @@
 		<scriptvariable serial="0x5AA299B2" name="aspectTome" />
 		<scriptvariable serial="0x6D8B4F88" name="treasureTome" />
 		<scriptvariable serial="0x5AA304B7" name="skillScrollTome" />
-		<scriptvariable serial="0x5AA299B2" name="arcaneRuneTome" />
+		<scriptvariable serial="0x62E5762B" name="arcaneRuneTome" />
 		<scriptvariable serial="0x48EAD156" name="shelf" />
+		<scriptvariable serial="0x62A002CE" name="jase_lumber_runebook" />
+		<scriptvariable serial="0x1" name="DanStock." />
+		<scriptvariable serial="0x62A002CE" name="mining_runebook" />
+		<scriptvariable serial="0x1" name="FIRSTRUN" />
+		<scriptvariable serial="0x0" name="cookingStockpile" />
+		<scriptvariable serial="0x4AA28276" name="fishingTome" />
 	</scriptvariables>
 	<friends />
 	<textfilters>

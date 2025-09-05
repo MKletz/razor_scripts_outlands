@@ -1,0 +1,14 @@
+// Maul, Katana, balestra
+if findtype 30993|1763|5159|5121 backpack as weapon
+    getlabel weapon label
+    if 'aspect' in label or 'mastercrafted' in label
+        dclick weapon
+    endif
+endif
+
+if findtype 'heater shield' backpack as shield
+    getlabel shield label
+    if 'mastercrafted' in label
+        dclick shield
+    endif
+endif

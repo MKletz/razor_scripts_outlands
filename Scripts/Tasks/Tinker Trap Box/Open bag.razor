@@ -1,4 +1,8 @@
 @clearignore 
+if listexists bags
+    removelist bags
+endif
+
 createlist bags
 clearlist bags
 
@@ -6,8 +10,12 @@ if findtypelist bags 'bag' self
     foreach x in bags
         overhead "Opening {{x}}"
         dclick x
+        wait 200
         while queued
             wait 700
         endwhile
+        hotkey "Set Grab Item HotBag"
+        wft 200
+        target x
     endfor
 endif

@@ -37,12 +37,12 @@ overhead "Now keeping you alive" 34
 
 while not dead
     // Cast mini heal
-    if use_magery = 1 and hp < cast_heal_hp and mana > 10
-        cast 'heal'
-        wft 200
-        target self
-        wait 650
-    endif
+    // if use_magery = 1 and hp < cast_heal_hp and mana > 10
+    //    cast 'heal'
+    //    wft 200
+    //    target self
+    //    wait 650
+    // endif
     
     // Drink healing potion
     if hp < drink_heal_hp
@@ -102,7 +102,7 @@ while not dead
             overhead 'Drinking cure!' 48
             potion "cure" 
             wait 650      
-        elseif use_magery = 1
+        elseif use_magery = 1 and mana > 10
             cast "Cure"
             wft 200
             target self

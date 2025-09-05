@@ -1,0 +1,26 @@
+if not varexist shelf
+    overhead "Target storage shelf" 34
+    @setvar! shelf
+endif
+
+while not dead
+    if mana < 10
+        dclicktype 29012  
+        skill 'meditation'
+        while mana < 100
+        endwhile
+        
+    endif
+
+    if counttype 3972 self < 1 or counttype 3973 self < 1 or counttype 3974 self < 1
+        menu shelf 0
+        wft 200
+        target self
+        wait 200
+        menu shelf 1
+        wait 200
+    endif
+    
+    cast 'Create Food'
+    wait 400
+endwhile

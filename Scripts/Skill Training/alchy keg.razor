@@ -1,0 +1,19 @@
+# Lesser Magic Potion 3846
+
+setvar! PotionID '3846'
+
+while not dead
+    if findtype PotionID backpack
+        dclicktype PotionID backpack
+        wait 200
+    endif
+    
+    if weight > 200
+        if findtype "resource container" ground -1 -1 2 as resource
+            menu resource 0
+            wft 500
+            target self
+            wait 200
+         endif
+    endif
+endwhile

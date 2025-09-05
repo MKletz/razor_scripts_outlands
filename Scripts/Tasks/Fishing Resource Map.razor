@@ -1,0 +1,69 @@
+while not findbuff "Tracking Hunting"
+    skill 'tracking'
+    waitforgump 4267467659
+    gumpresponse 6
+    waitforgump 4267467659
+    gumpclose
+endwhile
+
+clearsysmsg 
+
+lifttype 'fishing pole'
+wait 100
+drop 'self' LeftHand
+
+while findtype map backpack
+    hotkey 'Use Item in Hand'
+    if insysmsg "Now tracking"
+        overhead "Red Alert!" 34
+        say '[recall house'
+    endif
+    
+    if insysmsg "You are too far away to continue fishing there."
+        overhead "Too far away" 50
+    stop
+    endif   
+    wait 2000
+endwhile
+
+if insysmsg 'You have completely exhausted your fishing camp.'
+    say 'All Follow Me'
+    wait 200
+    say '[recall house'
+    wait 2500
+endif
+
+while findtype 7710|2508 as fish
+    dclick fish
+    wait 200
+endwhile
+
+while findtype fish as fishy
+    dclick 0x5CDBEF3E
+    wft 200
+    target fishy
+endwhile
+
+while findtype 17159|28831|17604|47244|44256|44224|44211|28844|47239|44223|47260|44257|44244|44214|17155|44229|28827|44215|44212|28826 as fishy
+    dclick 0x5CDBEF3E
+    wft 200
+    target fishy
+endwhile
+
+while findtype 7133 backpack as logs
+    dclick logs
+endwhile
+
+if findtype "resource container" ground -1 -1 2 as resource
+    menu resource 0
+    wft 500
+    target self
+    wait 200
+endif
+
+if findtype "barrel planter shelf" ground -1 -1 2 as resource
+    menu resource 0
+    wft 500
+    target self
+    wait 200
+endif
