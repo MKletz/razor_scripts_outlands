@@ -1,0 +1,18 @@
+#This is a simple Taming and Release script for the new recent change that allows tamers to gain skill from releasing and retaming
+
+useskill "Animal Taming"
+
+wft 200
+
+target closest gray monster
+
+wait 11000
+
+if followers > 1
+    say 'all release' 
+    waitforgump 931181454 2000 
+    gumpresponse 1 931181454 
+    wait 2500
+endif
+
+loop

@@ -1,13 +1,54 @@
-while skill 'poisoning' < 80
-    menu 0x426514BB 0
-    wait 5000
-    if poisoned
-        if findtype "Orange Potion" self
-            wait 650            
-            overhead 'Drinking cure!' 48
-            potion "cure" 
-            wait 650
-        endif 
+# Stand next to your shelf
+# Have 1 Kryss in your bag
+# Set your resupply for 1 Regular, Greater, and Deadly Potion
+# SeT your resupply for 5 Cures
+# Set your resupply for 10 bandages
+
+while not poisoned and hp = maxhp
+
+    if findtype "kryss" backpack as weapon
+        
+        if skill "Poisoning" < 60
+            menu weapon 3
+        elseif skill "Poisoning" < 80
+            menu weapon 2
+        elseif skill "Poisoning" < 100
+            menu weapon 1
+        elseif skill "Poisoning" < 120
+            menu weapon 0
+        endif
+        wait 1000
+
+        if findtype "storage shelf" ground -1 -1 2 as shelf
+            overhead 'Shelf Restocking'
+            menu shelf 1
+            wait 200
+        endif
     endif
-    loop
+    
+    wait 250
 endwhile
+
+while poisoned
+    if findtype "Orange Potion" self
+    dclicktype "Orange Potion"
+    sysmsg "Cure pot" 55
+    wait 400
+    endif
+endwhile
+
+if hp < 40
+    if findtype 3852 self as PotsHeal 
+        getlabel PotsHeal LabelPotsHeal
+        if 'next usable' in LabelPotsHeal
+            sysmsg 'Unable to use Heal Potion Yet!' 33          
+        else
+            overhead 'Drinking heal!' 68  
+            dclick PotsHeal
+            wait 650  
+        endif
+    else
+        overhead "Out of Healing Potion" 34
+    endif
+endif
+replay

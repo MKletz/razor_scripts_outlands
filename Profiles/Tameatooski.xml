@@ -13,8 +13,8 @@
 	<property name="SortCounters" type="System.Boolean">True</property>
 	<property name="QueueActions" type="System.Boolean">True</property>
 	<property name="QueueTargets" type="System.Boolean">False</property>
-	<property name="WindowX" type="System.Int32">400</property>
-	<property name="WindowY" type="System.Int32">400</property>
+	<property name="WindowX" type="System.Int32">1461</property>
+	<property name="WindowY" type="System.Int32">475</property>
 	<property name="CountStealthSteps" type="System.Boolean">True</property>
 	<property name="SysColor" type="System.Int32">68</property>
 	<property name="WarningColor" type="System.Int32">37</property>
@@ -27,11 +27,11 @@
 	<property name="ImageFormat" type="System.String">jpg</property>
 	<property name="UndressConflicts" type="System.Boolean">True</property>
 	<property name="Systray" type="System.Boolean">False</property>
-	<property name="RazorWidth" type="System.Int32">546</property>
-	<property name="RazorHeight" type="System.Int32">411</property>
+	<property name="RazorWidth" type="System.Int32">160</property>
+	<property name="RazorHeight" type="System.Int32">28</property>
 	<property name="SellAgentMax" type="System.Int32">99</property>
-	<property name="SkillListCol" type="System.Int32">3</property>
-	<property name="SkillListAsc" type="System.Boolean">True</property>
+	<property name="SkillListCol" type="System.Int32">5</property>
+	<property name="SkillListAsc" type="System.Boolean">False</property>
 	<property name="AutoStack" type="System.Boolean">False</property>
 	<property name="ActionStatusMsg" type="System.Boolean">True</property>
 	<property name="RangeCheckLT" type="System.Boolean">True</property>
@@ -72,14 +72,8 @@
 	<property name="MaxLightLevel" type="System.Int32">31</property>
 	<property name="MinLightLevel" type="System.Int32">0</property>
 	<property name="MinMaxLightLevelEnabled" type="System.Boolean">False</property>
-	<property name="ShowStaticWalls" type="System.Boolean">False</property>
-	<property name="ShowStaticWallLabels" type="System.Boolean">False</property>
 	<property name="ShowTextTargetIndicator" type="System.Boolean">False</property>
 	<property name="ShowAttackTargetNewOnly" type="System.Boolean">True</property>
-	<property name="FilterDragonGraphics" type="System.Boolean">False</property>
-	<property name="FilterDrakeGraphics" type="System.Boolean">False</property>
-	<property name="DragonGraphic" type="System.Int32">0</property>
-	<property name="DrakeGraphic" type="System.Int32">0</property>
 	<property name="ShowInRazorTitleBar" type="System.Boolean">False</property>
 	<property name="RazorTitleBarText" type="System.String">{name} on {account} ({profile} - {shard}) - Razor v{version}</property>
 	<property name="EnableUOAAPI" type="System.Boolean">True</property>
@@ -114,8 +108,6 @@
 	<property name="CaptureOthersDeath" type="System.Boolean">False</property>
 	<property name="CaptureOwnDeath" type="System.Boolean">False</property>
 	<property name="TargetFilterEnabled" type="System.Boolean">False</property>
-	<property name="FilterDaemonGraphics" type="System.Boolean">False</property>
-	<property name="DaemonGraphic" type="System.Int32">0</property>
 	<property name="SoundFilterEnabled" type="System.Boolean">False</property>
 	<property name="ShowFilteredSound" type="System.Boolean">False</property>
 	<property name="ShowPlayingSoundInfo" type="System.Boolean">False</property>
@@ -166,16 +158,9 @@
 		<Buy-9 enabled="False" />
 		<Buy-10 enabled="False" />
 		<IgnoreList enabled="False" />
-		<Organizer-1 hotbag="1450533024">
-			<item id="3878" />
-			<item id="3862" />
-			<item id="3885" />
-			<item id="3873" />
-			<item id="3877" />
-			<item id="3856" />
-			<item id="3859" />
-			<item id="3865" />
-			<item id="3861" />
+		<Organizer-1 hotbag="1281680152">
+			<item id="3763" />
+			<item id="3713" />
 		</Organizer-1>
 		<Organizer-2 hotbag="0" />
 		<Organizer-3 hotbag="0" />
@@ -255,6 +240,7 @@
 	</dresslists>
 	<hotkeys>
 		<key mod="1" key="192" send="False">Play Script: Mage Bot\stop and recall home</key>
+		<key mod="0" key="192" send="False">L:2035</key>
 	</hotkeys>
 	<overheadmessages>
 		<overheadmessage searchtext="Criminal healing will now be prevented." message="Criminal Healing Prevented" hue="69" />
@@ -272,6 +258,8 @@
 		<overheadmessage searchtext="Repaired " message="Repaired {2} {3}" hue="68" />
 		<overheadmessage searchtext="need of repairs" message="Fully Repaired" hue="68" />
 		<overheadmessage searchtext="You must have a skinning knife equipped or in your pack in order to do any carving." message="Missing Skinning Knife" hue="34" />
+		<overheadmessage searchtext="Harvest double yield/loot triggered." message="Harvest Proc Value!!!" hue="68" />
+		<overheadmessage searchtext="Poison upgraded to" message="Upgraded to {4}" hue="68" />
 	</overheadmessages>
 	<containerlabels />
 	<macrovariables />
@@ -301,6 +289,18 @@
 		<scriptvariable serial="0x0" name="cartographyStockpile" />
 		<scriptvariable serial="0x1" name="waitForMe" />
 		<scriptvariable serial="0x0" name="cookingStockpile" />
+		<scriptvariable serial="0x46152F7C" name="treasureTome" />
+		<scriptvariable serial="0x5AA304B7" name="skillScrollTome" />
+		<scriptvariable serial="0x4AA28276" name="fishingTome" />
+		<scriptvariable serial="0x5AA299B2" name="aspectTome" />
+		<scriptvariable serial="0x62E5762B" name="arcaneRuneTome" />
+		<scriptvariable serial="0x48EAD156" name="shelf" />
+		<scriptvariable serial="0x4D5FC6" name="myNecroTrainTarget" />
+		<scriptvariable serial="0x1F2491" name="tameTarget" />
+		<scriptvariable serial="0x0" name="blacksmithingStockpile" />
+		<scriptvariable serial="0x41E68253" name="lumberTome" />
+		<scriptvariable serial="0x492A57AF" name="oreTome" />
+		<scriptvariable serial="0x492A5081" name="chainTome" />
 	</scriptvariables>
 	<friends />
 	<textfilters>

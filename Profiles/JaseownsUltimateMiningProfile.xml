@@ -13,8 +13,8 @@
 	<property name="SortCounters" type="System.Boolean">True</property>
 	<property name="QueueActions" type="System.Boolean">False</property>
 	<property name="QueueTargets" type="System.Boolean">False</property>
-	<property name="WindowX" type="System.Int32">462</property>
-	<property name="WindowY" type="System.Int32">430</property>
+	<property name="WindowX" type="System.Int32">1505</property>
+	<property name="WindowY" type="System.Int32">234</property>
 	<property name="CountStealthSteps" type="System.Boolean">True</property>
 	<property name="SysColor" type="System.Int32">68</property>
 	<property name="WarningColor" type="System.Int32">37</property>
@@ -72,14 +72,8 @@
 	<property name="MaxLightLevel" type="System.Int32">31</property>
 	<property name="MinLightLevel" type="System.Int32">0</property>
 	<property name="MinMaxLightLevelEnabled" type="System.Boolean">False</property>
-	<property name="ShowStaticWalls" type="System.Boolean">False</property>
-	<property name="ShowStaticWallLabels" type="System.Boolean">False</property>
 	<property name="ShowTextTargetIndicator" type="System.Boolean">False</property>
 	<property name="ShowAttackTargetNewOnly" type="System.Boolean">True</property>
-	<property name="FilterDragonGraphics" type="System.Boolean">True</property>
-	<property name="FilterDrakeGraphics" type="System.Boolean">False</property>
-	<property name="DragonGraphic" type="System.Int32">0</property>
-	<property name="DrakeGraphic" type="System.Int32">0</property>
 	<property name="ShowInRazorTitleBar" type="System.Boolean">False</property>
 	<property name="RazorTitleBarText" type="System.String">{name} on {account} ({profile} - {shard}) - Razor v{version}</property>
 	<property name="EnableUOAAPI" type="System.Boolean">True</property>
@@ -114,8 +108,6 @@
 	<property name="CaptureOthersDeath" type="System.Boolean">False</property>
 	<property name="CaptureOwnDeath" type="System.Boolean">False</property>
 	<property name="TargetFilterEnabled" type="System.Boolean">False</property>
-	<property name="FilterDaemonGraphics" type="System.Boolean">False</property>
-	<property name="DaemonGraphic" type="System.Int32">0</property>
 	<property name="SoundFilterEnabled" type="System.Boolean">False</property>
 	<property name="ShowFilteredSound" type="System.Boolean">False</property>
 	<property name="ShowPlayingSoundInfo" type="System.Boolean">False</property>
