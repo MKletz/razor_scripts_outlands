@@ -13,8 +13,8 @@
 	<property name="SortCounters" type="System.Boolean">True</property>
 	<property name="QueueActions" type="System.Boolean">True</property>
 	<property name="QueueTargets" type="System.Boolean">False</property>
-	<property name="WindowX" type="System.Int32">1461</property>
-	<property name="WindowY" type="System.Int32">475</property>
+	<property name="WindowX" type="System.Int32">892</property>
+	<property name="WindowY" type="System.Int32">212</property>
 	<property name="CountStealthSteps" type="System.Boolean">True</property>
 	<property name="SysColor" type="System.Int32">68</property>
 	<property name="WarningColor" type="System.Int32">37</property>
@@ -301,6 +301,7 @@
 		<scriptvariable serial="0x41E68253" name="lumberTome" />
 		<scriptvariable serial="0x492A57AF" name="oreTome" />
 		<scriptvariable serial="0x492A5081" name="chainTome" />
+		<scriptvariable serial="0x52EDD1B6" name="skinningTome" />
 	</scriptvariables>
 	<friends />
 	<textfilters>
